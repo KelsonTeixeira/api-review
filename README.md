@@ -19,4 +19,4 @@ To run the test use:
 ```
 $ yarn test
 ```
-To ready the documentation, access the endpoint '/api-documentation'
+To read the documentation, access the endpoint '/api-documentation'
