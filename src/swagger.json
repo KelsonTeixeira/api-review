@@ -1,0 +1,158 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Clients api",
+    "description": "Study api to review all subjects I nedded",
+    "version": "0.0.5",
+    "contact": {
+      "email": "dev@kelsonteixeira.com"
+    }
+  },
+  "paths": {
+    "/": {
+      "post": {
+        "tags": ["Clients"],
+        "summary": "create client",
+        "description": "Create a new client", 
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "John Dow",
+                  "city": "New York"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }, 
+          "500": {
+            "description": "Internal error"
+          }
+        }
+      },
+
+      "get": {
+        "tags": ["Clients"],
+        "summary": "list clients",
+        "description": "Will list all clients",
+
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }, 
+                      "city": {
+                        "type": "string"
+                      }, 
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+      }
+    },
+
+    "/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path", 
+          "description": "client id",
+          "required": true,
+          "type": "string"
+        }
+      ], 
+      "patch": {
+        "tags": ["Clients"],
+        "summary": "Update name",
+        "description": "Updates a cliente's name",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "New Client Name"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "constent": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    }, 
+                    "city": {
+                      "type": "string"
+                    }, 
+                    "id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }, 
+
+          "404": {
+            "description": "Client not found"
+          }
+        }
+      }, 
+
+      "delete": {
+        "tags": ["Clients"],
+        "summary": "Delete client",
+        "description": "Delete a client by id",
+        "responses": {
+          "204": {
+            "description": "Deleted"
+          }, 
+          "404": {
+            "description": "Client not found"
+          }
+        }
+      }
+    }
+  }
+}
